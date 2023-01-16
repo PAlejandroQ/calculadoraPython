@@ -9,7 +9,7 @@ pipeline{
         }
 	stages("Ejecucion"){
 		steps{
-			sh "python3 calculador.py 24 12
+			sh "python3 calculador.py 24 12"
 		}
 	}
 	stages("Tests"){
