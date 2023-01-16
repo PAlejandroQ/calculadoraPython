@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: holaflask-deployment
+  labels:
+    app: holaflask
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 0
+  selector:
+    matchLabels:
+      app: holaflask
+  template:
+    metadata:
+      labels:
+        app: holaflask
+        label: lbl
+    spec:
+      containers:
+        - name: saludoflask
+          image: alejandroqo/holaflask
+          ports:
+          - containerPort: 5000
+          readinessProbe:
+            httpGet:
+              path: /hola
+              port: 5000
